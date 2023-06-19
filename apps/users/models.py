@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractUser
 from parler.models import TranslatableModel, TranslatedFields
 
 
-class SellersClassification(models.Model):
+class SellersClassification(TranslatableModel):
     translations = TranslatedFields(
         name = models.CharField(max_length=100)
     )
