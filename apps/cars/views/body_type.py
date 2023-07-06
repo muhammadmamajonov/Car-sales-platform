@@ -58,6 +58,7 @@ class BodyTypeWithCountAPIView(ListAPIView):
         min_price = request.GET.get('min_price')
         max_price = request.GET.get('max_price')
         currency = request.GET.get('currency')
+        service = request.GET.get('service')
 
         if model_id:
             query['model_id']=model_id
@@ -79,7 +80,10 @@ class BodyTypeWithCountAPIView(ListAPIView):
             query['price__lte']=max_price
         if currency:
             query['currency']=currency
-    
+        if service:
+            query['service']=service
+
+            
         serialized = self.serializer_class(self.get_queryset(), many=True, context={'request':request}).data
 
         for i in range(len(serialized)):

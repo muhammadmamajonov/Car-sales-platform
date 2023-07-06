@@ -50,4 +50,6 @@ urlpatterns = [
     path('filter/model', FilterModelAPIView.as_view()),
     path('filter/brands', FilterBrandAPIView.as_view()),
     path('filter/body-type', BodyTypeWithCountAPIView.as_view()),
+    path('filter/service', ServiceWithCountAPIView.as_view()),
+    path('filter/transmission', TransmissionListWithCountAPIView.as_view()),
 ]
