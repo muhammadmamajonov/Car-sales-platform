@@ -1,4 +1,4 @@
-from ..models import Car
+from ..models.car import Car
 from ..serializers.fuel import FuelListSerializer
 from ..serializers.brand import  CarModelSerializer
 from ..serializers.color import ColorListSerializer
@@ -75,3 +75,26 @@ class CarsOwnedByOrientMotorsSerializer(ModelSerializer):
             'brand':obj.model.brand.name
         }
         return model
+    
+
+class CarsListFilterByServiceSerializer(ModelSerializer):
+    liked = SerializerMethodField()
+    model = SerializerMethodField()
+
+    class Meta:
+        model = Car
+        fields = ('id', 'model', 'price', 'year', 'engine_size', 'horsepower', 'liked')
+
+    def get_liked(self, obj):
+        request = self.context.get('request')
+        user = request.user
+        if user in obj.liked_by.all():
+            return True
+        return False
+
+    def get_model(self, obj):
+        model = {
+            'name':obj.model.name,
+            'brand':obj.model.brand.name
+        }
+        return model    

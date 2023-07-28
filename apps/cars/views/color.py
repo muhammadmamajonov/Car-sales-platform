@@ -1,4 +1,4 @@
-from ..models import Color
+from ..models.specification import Color
 from rest_framework.permissions import IsAdminUser
 from django.utils.translation import get_language_from_request
 from rest_framework.authentication import SessionAuthentication

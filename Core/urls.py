@@ -30,7 +30,7 @@ urlpatterns = [
     path('token/access/admin/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
-    path('docs/login', docs_login_view),
+    path('docs/login/', docs_login_view),
     path(r'docs/', 
         include_docs_urls(
             title='OrientMotors',

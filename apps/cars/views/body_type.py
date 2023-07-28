@@ -1,4 +1,5 @@
-from apps.cars.models import BodyType, Car
+from ..models.car import Car
+from ..models.specification import BodyType
 from rest_framework.response import Response
 from ..schemas import body_type_with_count_schema
 from rest_framework.permissions import IsAdminUser

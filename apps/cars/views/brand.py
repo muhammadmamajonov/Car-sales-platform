@@ -1,4 +1,4 @@
-from ..models import Brand, Model
+from ..models.brand import Brand, Model
 from rest_framework.response import Response
 from rest_framework.permissions import IsAdminUser
 from rest_framework.authentication import SessionAuthentication

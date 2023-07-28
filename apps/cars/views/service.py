@@ -1,4 +1,5 @@
-from ..models import Car, Service
+from ..models.car import Car
+from ..models.service import Service
 from rest_framework.response import Response
 from rest_framework.permissions import IsAdminUser
 from django.utils.translation import get_language_from_request
@@ -36,6 +37,11 @@ class ServiceListAPIView(ListAPIView):
         language = get_language_from_request(self.request)
         self.queryset = Service.objects.language(language).all()
         return super().get_queryset()
+
+
+class Old3ServiesListAPIView(ListAPIView):
+    serializer_class = ServiceListSerializer
+    queryset = Service.objects.all()[:3]
 
 
 class ServiceWithCountAPIView(ListAPIView):

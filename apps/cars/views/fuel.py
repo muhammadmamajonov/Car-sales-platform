@@ -1,5 +1,5 @@
-from ..models import Fuel
 from ..serializers.fuel import *
+from ..models.specification import Fuel
 from rest_framework.response import Response
 from rest_framework.permissions import IsAdminUser
 from django.utils.translation import get_language_from_request

@@ -1,4 +1,5 @@
-from ..models import Brand, Model, Car
+from ..models.car import Car
+from ..models.brand import Brand, Model
 from rest_framework.serializers import ModelSerializer, SerializerMethodField
 
 

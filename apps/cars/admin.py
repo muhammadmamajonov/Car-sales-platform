@@ -1,6 +1,10 @@
+from .models.brand import *
+from .models.car import Car
+from .models.service import *
 from django.contrib import admin
-from .models import *
+from .models.specification import *
 from parler.admin import TranslatableAdmin
+
 
 class BodyTypeAdmin(TranslatableAdmin):
     list_display = ['id', 'name']
@@ -10,6 +14,7 @@ class BodyTypeAdmin(TranslatableAdmin):
         }),
     )
 admin.site.register(BodyType, BodyTypeAdmin)
+
 
 class ColorAdmin(TranslatableAdmin):
     list_display = ['id', 'name', 'code']

@@ -1,4 +1,4 @@
-from ..models import BodyType
+from ..models.specification import BodyType
 from rest_framework.serializers import SerializerMethodField
 from parler_rest.serializers import TranslatableModelSerializer, TranslatedFieldsField
 from django.utils.translation import get_language_from_request

@@ -1,6 +1,7 @@
-from ..models import Car
+from ..models.car import Car
 from ..serializers.cars import *
 from utils.permissions import IsOwner
+from rest_framework.views import APIView
 from ..pagination import CarsListPagination
 from rest_framework.permissions import IsAuthenticated
 from django.utils.translation import get_language_from_request
@@ -43,6 +44,18 @@ class CarsOwnedByOrientMotorsAPIView(ListAPIView):
     def get_queryset(self):
         self.queryset = Car.objects.filter(owned_by_orient_motors=True)
         return super().get_queryset()
+
+
+class CarsFilterByService(ListAPIView):
+    serializer_class = CarsListFilterByServiceSerializer
+    queryset = Car.objects.all().select_related("model", "model__brand")
+    lookup_field = 'service_id'
+    
+    # def get_queryset(self):
+    #     service_id = self.kwargs.get('service_id')
+    #     self.queryset = Car.objects.filter(service_id=service_id).select_related("model", "model__brand")
+    #     return super().get_queryset()
+    
 
 
 # class CarsFilterAPIView(ListAPIView):
