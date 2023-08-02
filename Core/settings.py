@@ -42,6 +42,9 @@ MY_APPS = [
     'apps.cars',
     'apps.users',
     'apps.main.apps.MainConfig',
+    'apps.filter',
+    'apps.services',
+    'apps.specifications'
 ]
 THIRD_PARTY_APPS = [
     'rest_framework_simplejwt',

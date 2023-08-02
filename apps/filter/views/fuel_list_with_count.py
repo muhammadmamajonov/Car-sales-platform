@@ -1,41 +1,9 @@
-from ..serializers.fuel import *
-from ..models.specification import Fuel
+from apps.cars.models.car import Car
 from rest_framework.response import Response
-from rest_framework.permissions import IsAdminUser
-from django.utils.translation import get_language_from_request
-from rest_framework.authentication import SessionAuthentication
-from rest_framework_simplejwt.authentication import JWTAuthentication
-from rest_framework.generics import CreateAPIView, ListAPIView, UpdateAPIView, RetrieveAPIView
+from apps.specifications.models import Fuel
+from rest_framework.generics import ListAPIView
+from apps.specifications.serializers.fuel import *
 
-authentication_classes = [SessionAuthentication, JWTAuthentication]
-
-class FuelCreateAPIView(CreateAPIView):
-    serializer_class = FuelSerializer
-    permission_classes = [IsAdminUser]
-    authentication_classes=authentication_classes
-
-
-class FuelEditAPIView(UpdateAPIView):
-    queryset = Fuel.objects.all()
-    serializer_class = FuelSerializer
-    permission_classes = [IsAdminUser]
-    authentication_classes = authentication_classes
-    http_method_names = ['patch']
-
-
-class FuelGetAPIView(RetrieveAPIView):
-    queryset = Fuel.objects.all()
-    serializer_class = FuelSerializer
-    
-
-class FuelListAPIView(ListAPIView):
-    serializer_class = FuelListSerializer
-
-    def get_queryset(self):
-        language = get_language_from_request(self.request)
-        self.queryset = Fuel.objects.language(language).all()
-        return super().get_queryset()
-    
 
 class FuelListWithCountAPIView(ListAPIView):
     queryset = Fuel.objects.all()
@@ -55,6 +23,8 @@ class FuelListWithCountAPIView(ListAPIView):
         currency = request.GET.get('currency')
         body_type = request.GET.get('body_type')
         service = request.GET.get('service')
+        color = request.GET.get('color')
+        transmission = request.GET.get('transmission')
 
         if model_id:
             query['model_id']=model_id
@@ -80,6 +50,10 @@ class FuelListWithCountAPIView(ListAPIView):
             query['body_type']=body_type
         if service:
             query['service']=service
+        if color:
+            query['color_id']=color
+        if transmission:
+            query['transmission_id']=transmission
             
 
         

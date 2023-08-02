@@ -18,6 +18,7 @@ class Transmission(TranslatableModel):
     class Meta:
         db_table = "transmission"
     
+    
 class Color(TranslatableModel):
     translations = TranslatedFields(
         name = models.CharField(max_length=50)

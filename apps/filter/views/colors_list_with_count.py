@@ -1,47 +1,14 @@
-from ..models.car import Car
-from ..serializers.transmission import *
+
+from apps.cars.models.car import Car
 from rest_framework.response import Response
-from ..models.specification import Transmission
-from rest_framework.permissions import IsAdminUser
-from django.utils.translation import get_language_from_request
-from rest_framework.authentication import SessionAuthentication
-from rest_framework_simplejwt.authentication import JWTAuthentication
-from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView, UpdateAPIView
+from apps.specifications.models import Color
+from rest_framework.generics import ListAPIView
+from apps.specifications.serializers.color import ColorListSerializer
 
 
-authentication_classes = [SessionAuthentication, JWTAuthentication]
-
-
-class TransmissionCreateAPIView(CreateAPIView):
-    serializer_class = TransmissionSerializer
-    permission_classes = [IsAdminUser]
-    authentication_classes = authentication_classes
-
-
-class TransmissionEditAPIView(UpdateAPIView):
-    queryset = Transmission.objects.all()
-    serializer_class = TransmissionSerializer
-    permission_classes = [IsAdminUser]
-    authentication_classes = authentication_classes
-    http_method_names = ['patch']
-
-
-class TransmissionGetAPIView(RetrieveAPIView):
-    queryset = Transmission.objects.all()
-    serializer_class = TransmissionSerializer
-
-
-class TransmissionListAPIView(ListAPIView):
-    serializer_class = TransmissionListSerializer
-
-    def get_queryset(self):
-        language = get_language_from_request(self.request)
-        self.queryset = Transmission.objects.language(language).all()
-        return super().get_queryset()
-
-class TransmissionListWithCountAPIView(ListAPIView):
-    queryset = Transmission.objects.all()
-    serializer_class = TransmissionSerializer
+class ColorListWithCountAPIView(ListAPIView):
+    queryset = Color.objects.all()
+    serializer_class = ColorListSerializer
 
     def list(self, request, *args, **kwargs):
             query = {}
@@ -58,7 +25,7 @@ class TransmissionListWithCountAPIView(ListAPIView):
             body_type = request.GET.get('body_type')
             service = request.GET.get('service')
             fuel = request.GET.get('fuel')
-            color = request.GET.get('color')
+            transmission = request.GET.get('transmission')
 
 
             if model_id:
@@ -82,13 +49,13 @@ class TransmissionListWithCountAPIView(ListAPIView):
             if currency:
                 query['currency']=currency
             if body_type:
-                query['body_type']=body_type
+                query['body_type_id']=body_type
             if service:
-                query['service']=service
+                query['service_id']=service
             if fuel:
-                query['fuel']=fuel
-            if color:
-                query['color']=color
+                query['fuel_id']=fuel
+            if transmission:
+                query['transmission_id']=transmission
                 
 
             serialized = self.serializer_class(self.get_queryset(), many=True, context={'request':request}).data

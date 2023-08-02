@@ -1,7 +1,6 @@
-from ..models.specification import BodyType
-from rest_framework.serializers import SerializerMethodField
-from parler_rest.serializers import TranslatableModelSerializer, TranslatedFieldsField
+from ..models import BodyType
 from django.utils.translation import get_language_from_request
+from parler_rest.serializers import TranslatableModelSerializer, TranslatedFieldsField
 
 class BodyTypeSerializer(TranslatableModelSerializer):
     translations = TranslatedFieldsField(shared_model=BodyType, help_text="{'ru': {'name': 'Седан'},'uz': {'name': 'Sedan'}}")

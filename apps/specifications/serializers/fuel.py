@@ -1,18 +1,18 @@
-from ..models.specification import Transmission, Color
+from ..models import *
 from django.utils.translation import get_language_from_request
 from parler_rest.serializers import TranslatableModelSerializer, TranslatedFieldsField
 
 
-class TransmissionSerializer(TranslatableModelSerializer):
-    translations = TranslatedFieldsField(shared_model=Color, help_text="{'ru': {'name': 'Автамат'},'uz': {'name': 'Avtamat'}}")
+class FuelSerializer(TranslatableModelSerializer):
+    translations = TranslatedFieldsField(shared_model=Fuel,  help_text="{'ru': {'name': 'Бензин'},'uz': {'name': 'Benzin'}}")
     class Meta:
-        model = Transmission
+        model = Fuel
         fields = '__all__'
-    
 
-class TransmissionListSerializer(TranslatableModelSerializer):
+
+class FuelListSerializer(TranslatableModelSerializer):
     class Meta:
-        model = Transmission
+        model = Fuel
         fields = ['id', 'name']
 
     def to_representation(self, instance):

@@ -15,3 +15,9 @@ class IsOwner(permissions.BasePermission):
         
         # Instance must have an attribute named `owner`.
         return obj.owner == request.user
+    
+
+class IsSuperUser(permissions.BasePermission):
+
+    def has_permission(self, request, view):
+        return bool(request.user and request.user.is_superuser)

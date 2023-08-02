@@ -83,3 +83,15 @@ body_type_with_count_schema = AutoSchema(manual_fields=[
     ),
 
 ])
+
+
+service_info_list_schema = AutoSchema(manual_fields=[
+    coreapi.Field(
+        name='service_id',
+        required=True,
+        description="Service id",
+        type='integer',
+        location='path',
+        schema=coreschema.String()
+    ),
+])

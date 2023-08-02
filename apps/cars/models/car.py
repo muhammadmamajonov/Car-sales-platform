@@ -1,10 +1,10 @@
 from .brand import Model
 from django.db import models
-from .specification import *
-from .service import Service
 from apps.users.models import User
 from apps.users.models import User
 from apps.main.models import Region
+from apps.specifications.models import BodyType, Color, Fuel, Transmission
+
 
 class Car(models.Model):
     year = models.PositiveSmallIntegerField(help_text="Ishlab chiqarilgan yil")
@@ -22,7 +22,9 @@ class Car(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     model = models.ForeignKey(Model, on_delete=models.SET_NULL, null=True)
     body_type = models.ForeignKey(BodyType, on_delete=models.SET_NULL, null=True)
-    service = models.ForeignKey(Service, on_delete=models.SET_NULL, null=True)
+    avtoritet_diagnostics = models.BooleanField()
+    avtoritet_premium_diagnostics = models.BooleanField()
+    orient_motors_warranty = models.BooleanField()
     region = models.ForeignKey(Region, on_delete=models.SET_NULL, null=True)
     fuel = models.ForeignKey(Fuel, on_delete=models.SET_NULL, null=True)
     transmission = models.ForeignKey(Transmission, on_delete=models.SET_NULL, null=True)

@@ -1,59 +1,7 @@
 from .models.brand import *
 from .models.car import Car
-from .models.service import *
 from django.contrib import admin
-from .models.specification import *
-from parler.admin import TranslatableAdmin
 
-
-class BodyTypeAdmin(TranslatableAdmin):
-    list_display = ['id', 'name']
-    fieldsets = (
-        (None, {
-            "fields":('name',)
-        }),
-    )
-admin.site.register(BodyType, BodyTypeAdmin)
-
-
-class ColorAdmin(TranslatableAdmin):
-    list_display = ['id', 'name', 'code']
-    fieldsets = (
-        (None, {
-            "fields":('name', 'code')
-        }),
-    )
-admin.site.register(Color, ColorAdmin)
-
-
-class ServiceAdmin(TranslatableAdmin):
-    list_display = ['id', 'name']
-    fieldsets = (
-        (None, {
-            "fields":('name',)
-        }),
-    )
-admin.site.register(Service, ServiceAdmin)
-
-
-class FuelAdmin(TranslatableAdmin):
-    list_display = ['id', 'name']
-    fieldsets = (
-        (None, {
-            "fields":('name',)
-        }),
-    )
-admin.site.register(Fuel, FuelAdmin)
-
-
-class TransmissionAdmin(TranslatableAdmin):
-    list_display = ['id', 'name']
-    fieldsets = (
-        (None, {
-            "fields":('name',)
-        }),
-    )
-admin.site.register(Transmission, TransmissionAdmin)
 
 
 class BrandAdmin(admin.ModelAdmin):

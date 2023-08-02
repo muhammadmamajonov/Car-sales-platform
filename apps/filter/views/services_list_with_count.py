@@ -1,52 +1,9 @@
-from ..models.car import Car
-from ..models.service import Service
+from apps.cars.models.car import Car
 from rest_framework.response import Response
-from rest_framework.permissions import IsAdminUser
-from django.utils.translation import get_language_from_request
-from rest_framework.authentication import SessionAuthentication
-from rest_framework_simplejwt.authentication import JWTAuthentication
-from ..serializers.service import ServiceListSerializer, ServiceSerializer
-from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView, UpdateAPIView
-
-authentication_classes = [SessionAuthentication, JWTAuthentication]
-
-
-class ServiceCreateAPIView(CreateAPIView):
-    serializer_class = ServiceSerializer
-    permission_classes = [IsAdminUser]
-    authentication_classes = authentication_classes
-
-
-class ServiceEditAPIView(UpdateAPIView):
-    queryset = Service.objects.all()
-    serializer_class = ServiceSerializer
-    permission_classes = [IsAdminUser]
-    authentication_classes = authentication_classes
-    http_method_names = ['patch']
-
-
-class ServiceGetAPIView(RetrieveAPIView):
-    queryset = Service.objects.all()
-    serializer_class = ServiceSerializer
-
-
-class ServiceListAPIView(ListAPIView):
-    serializer_class = ServiceListSerializer
-    
-    def get_queryset(self):
-        language = get_language_from_request(self.request)
-        self.queryset = Service.objects.language(language).all()
-        return super().get_queryset()
-
-
-class Old3ServiesListAPIView(ListAPIView):
-    serializer_class = ServiceListSerializer
-    queryset = Service.objects.all()[:3]
+from rest_framework.generics import ListAPIView
 
 
 class ServiceWithCountAPIView(ListAPIView):
-    queryset = Service.objects.all()
-    serializer_class = ServiceSerializer
 
     def list(self, request, *args, **kwargs):
         query = {}
@@ -62,6 +19,8 @@ class ServiceWithCountAPIView(ListAPIView):
         currency = request.GET.get('currency')
         body_type = request.GET.get('body_type')
         fuel = request.GET.get('fuel')
+        color = request.GET.get('color')
+        transmission = request.GET.get('transmission')
 
         if model_id:
             query['model_id']=model_id
@@ -84,9 +43,13 @@ class ServiceWithCountAPIView(ListAPIView):
         if currency:
             query['currency']=currency
         if body_type:
-            query['body_type']=body_type
+            query['body_type_id']=body_type
         if fuel:
-            query['fuel']=fuel
+            query['fuel_id']=fuel
+        if color:
+            query['color_id']=color
+        if transmission:
+            query['transmission_id']=transmission
 
         
         serialized = self.serializer_class(self.get_queryset(), many=True, context={'request':request}).data
@@ -97,4 +60,3 @@ class ServiceWithCountAPIView(ListAPIView):
         
         sorted_data = sorted(serialized, key=lambda data: data['count'], reverse=True)
         return Response(sorted_data)
-    

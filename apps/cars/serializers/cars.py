@@ -1,13 +1,13 @@
 from ..models.car import Car
-from ..serializers.fuel import FuelListSerializer
 from ..serializers.brand import  CarModelSerializer
-from ..serializers.color import ColorListSerializer
-from ..serializers.service import ServiceListSerializer
 from ...main.serializers.region import RegionSerializer
 from ...users.serializers.user import CarOwnerSerializer
-from ..serializers.body_type import BodyTypeListSerializer
-from ..serializers.transmission import TransmissionListSerializer
+from apps.specifications.serializers.fuel import FuelListSerializer
+from apps.specifications.serializers.color import ColorListSerializer
+from apps.specifications.serializers.body_type import BodyTypeListSerializer
 from rest_framework.serializers import ModelSerializer, SerializerMethodField
+from ...specifications.serializers.transmission import TransmissionListSerializer
+
 
 class CarSerializer(ModelSerializer):
     class Meta:
@@ -22,7 +22,6 @@ class CarGetDetailSerializer(ModelSerializer):
     model = CarModelSerializer()
     owner = CarOwnerSerializer()
     color = ColorListSerializer()
-    service = ServiceListSerializer()
     body_type = BodyTypeListSerializer()
     transmission = TransmissionListSerializer()
 
