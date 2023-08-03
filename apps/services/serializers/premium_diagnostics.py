@@ -1,6 +1,6 @@
 from django.utils.translation import get_language_from_request
 from parler_rest.serializers import TranslatableModelSerializer, TranslatedFieldsField
-from ..models.premium_diagnostics import DiagnosticSpecialists, PremiumDiagnosticsFAQ, PremiumDiagnosticsInfo, SpecialDiagnosticEquipment
+from ..models.premium_diagnostics import DiagnosticSpecialists, PremiumDiagnosticsFAQ, PremiumDiagnosticsHeader, PremiumDiagnosticsInfo, SpecialDiagnosticEquipment
 
 
 class PremiumDiagnosticsInfoSerializer(TranslatableModelSerializer):
@@ -77,6 +77,19 @@ class DiagnosticSpecialistsListSerializer(TranslatableModelSerializer):
         model = DiagnosticSpecialists
         fields = ('full_name', 'specialty', 'experience', 'photo')
 
+    def to_representation(self, instance):
+        language = get_language_from_request(self.context.get('request'))
+        instance.set_current_language(language)
+        return super().to_representation(instance)
+    
+
+# Header
+
+class PremiumDiagnosticsHeaderSerializer(TranslatableModelSerializer):
+    class Meta:
+        model = PremiumDiagnosticsHeader
+        fields = ('text', 'sub_text', 'video')
+    
     def to_representation(self, instance):
         language = get_language_from_request(self.context.get('request'))
         instance.set_current_language(language)

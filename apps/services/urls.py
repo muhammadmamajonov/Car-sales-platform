@@ -15,7 +15,8 @@ urlpatterns = [
     path('premium-diagnostics/special-diagnostic-equipent/list/', SpecialDiagnosticEquipentListAPIView.as_view()),
     path('premium-diagnostics/specialists/', DiagnosticSpecialistsAddAPIView.as_view()),
     path('premium-diagnostics/specialists/<int:pk>/', DiagnosticSpecialistsRetrieveUpdateAPIView.as_view()),
-    path('premium-diagnostics/specialists/list/', DiagnosticSpecialistsListAPIView.as_view())
+    path('premium-diagnostics/specialists/list/', DiagnosticSpecialistsListAPIView.as_view()),
+    path('premium-diagnostics/header/', PremiumDiagnosticsHeaderAPIView.as_view())
 
 
 ]

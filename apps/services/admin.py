@@ -1,7 +1,7 @@
 from django.contrib import admin
 from parler.admin import TranslatableAdmin
 from .models.diagnostics import DiagnosticsFAQ, DiagnosticsInfo
-from .models.premium_diagnostics import DiagnosticSpecialists, PremiumDiagnosticsFAQ, PremiumDiagnosticsInfo, SpecialDiagnosticEquipment
+from .models.premium_diagnostics import DiagnosticSpecialists, PremiumDiagnosticsFAQ, PremiumDiagnosticsInfo, SpecialDiagnosticEquipment, PremiumDiagnosticsHeader
 
 @admin.register(DiagnosticsFAQ)
 class DiagnosticsFAQAdmin(TranslatableAdmin):
@@ -39,3 +39,9 @@ class SpecialDiagnosticEquipmentAdmin(TranslatableAdmin):
 class DiagnosticSpecialistsAdmin(TranslatableAdmin):
     list_display = ('id', 'full_name', 'specialty', 'experience')
     list_display_links = ('id', 'full_name', 'specialty')
+
+
+@admin.register(PremiumDiagnosticsHeader)
+class PremiumDiagnosticsHeader(TranslatableAdmin):
+    list_display = ('id', 'text')
+    list_display_links = ('id', 'text')

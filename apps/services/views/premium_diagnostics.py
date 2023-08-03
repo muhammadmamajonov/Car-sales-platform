@@ -1,9 +1,14 @@
+from rest_framework.views import APIView
 from utils.permissions import IsSuperUser
+from rest_framework.response import Response
 from ..serializers.premium_diagnostics import *
+from django.utils.translation import get_language_from_request
 from rest_framework.authentication import SessionAuthentication
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveUpdateAPIView
-from ..models.premium_diagnostics import PremiumDiagnosticsFAQ, PremiumDiagnosticsInfo, SpecialDiagnosticEquipment
+from ..models.premium_diagnostics import PremiumDiagnosticsFAQ, PremiumDiagnosticsHeader, PremiumDiagnosticsInfo, SpecialDiagnosticEquipment
+
+
 
 authentication_classes = [SessionAuthentication, JWTAuthentication]
 
@@ -88,4 +93,11 @@ class DiagnosticSpecialistsRetrieveUpdateAPIView(RetrieveUpdateAPIView):
 class DiagnosticSpecialistsListAPIView(ListAPIView):
     queryset = DiagnosticSpecialists.objects.all()
     serializer_class = DiagnosticSpecialistsListSerializer
+
+
+class PremiumDiagnosticsHeaderAPIView(APIView):
+    def get(self, request):
+        header = PremiumDiagnosticsHeader.objects.first()
+        data = PremiumDiagnosticsHeaderSerializer(header, context={'request':request}).data
+        return Response(data)
 
