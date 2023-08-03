@@ -55,7 +55,7 @@ class SpecialDiagnosticEquipmentSerializer(TranslatableModelSerializer):
 class SpecialDiagnosticEquipmentListSerializer(TranslatableModelSerializer):
     class Meta:
         model = SpecialDiagnosticEquipment
-        fields = ('title', 'descipription', 'photo')
+        fields = ('title', 'description', 'photo')
     
     def to_representation(self, instance):
         language = get_language_from_request(self.context.get('request'))

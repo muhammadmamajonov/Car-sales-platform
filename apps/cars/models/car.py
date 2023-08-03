@@ -16,7 +16,7 @@ class Car(models.Model):
     horsepower = models.PositiveSmallIntegerField()
     used_car = models.BooleanField(default=False)
     active = models.BooleanField(default=True)
-    liked_by = models.ManyToManyField(User, related_name="likes")
+    liked_by = models.ManyToManyField(User, related_name="likes", null=True, blank=True)
     rate = models.PositiveSmallIntegerField(default=0)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     model = models.ForeignKey(Model, on_delete=models.SET_NULL, null=True)

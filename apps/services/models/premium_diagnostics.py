@@ -16,7 +16,7 @@ class PremiumDiagnosticsInfo(TranslatableModel):
 
 class PremiumDiagnosticsFAQ(TranslatableModel):
     translations = TranslatedFields(
-       qestion = models.CharField(max_length=250),
+       question = models.CharField(max_length=250),
        answer = models.TextField() 
     )
 
@@ -38,8 +38,16 @@ class SpecialDiagnosticEquipment(TranslatableModel):
 class DiagnosticSpecialists(TranslatableModel):
     translations = TranslatedFields(
         full_name = models.CharField(max_length=100),
-        specialty = models.TextField()
+        specialty = models.CharField(max_length=200)
     )
     experience = models.PositiveSmallIntegerField()
     photo = models.ImageField(upload_to="premium-diagnostics/specialists")
+    
+
+class PremiumDiagnosticsHeader(TranslatableModel):
+    translations = TranslatedFields(
+        text = models.TextField(),
+        sub_text = models.TextField()
+    )
+    video = models.FileField(upload_to='premium_dagnostics/header-video')
     

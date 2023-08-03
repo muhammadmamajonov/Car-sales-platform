@@ -15,7 +15,7 @@ class DiagnosticsInfo(TranslatableModel):
 
 class DiagnosticsFAQ(TranslatableModel):
     translations = TranslatedFields(
-       qestion = models.CharField(max_length=250),
+       question = models.CharField(max_length=250),
        answer = models.TextField() 
     )
 

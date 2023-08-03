@@ -9,3 +9,6 @@ class Region(TranslatableModel):
 
     class Meta:
         db_table = "region"
+
+    def __str__(self) -> str:
+        return self.name
