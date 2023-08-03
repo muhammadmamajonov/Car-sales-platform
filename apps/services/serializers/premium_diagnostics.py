@@ -1,6 +1,6 @@
 from django.utils.translation import get_language_from_request
 from parler_rest.serializers import TranslatableModelSerializer, TranslatedFieldsField
-from ..models.premium_diagnostics import PremiumDiagnosticsFAQ, PremiumDiagnosticsInfo, SpecialDiagnosticEquipment
+from ..models.premium_diagnostics import DiagnosticSpecialists, PremiumDiagnosticsFAQ, PremiumDiagnosticsInfo, SpecialDiagnosticEquipment
 
 
 class PremiumDiagnosticsInfoSerializer(TranslatableModelSerializer):
@@ -45,7 +45,7 @@ class PremiumDiagnosticsFAQListSerializer(TranslatableModelSerializer):
 # Special diagnostics Equipent
 
 class SpecialDiagnosticEquipmentSerializer(TranslatableModelSerializer):
-    translations = TranslatedFieldsField(shared_model=PremiumDiagnosticsInfo, help_text="{'ru': {'title': 'title ru', 'description':'description ru'},'uz': {'title': 'title uz', 'description':'description uz'}}")
+    translations = TranslatedFieldsField(shared_model=SpecialDiagnosticEquipment, help_text="{'ru': {'title': 'title ru', 'description':'description ru'},'uz': {'title': 'title uz', 'description':'description uz'}}")
     
     class Meta:
         model = SpecialDiagnosticEquipment
@@ -57,6 +57,26 @@ class SpecialDiagnosticEquipmentListSerializer(TranslatableModelSerializer):
         model = SpecialDiagnosticEquipment
         fields = ('title', 'descipription', 'photo')
     
+    def to_representation(self, instance):
+        language = get_language_from_request(self.context.get('request'))
+        instance.set_current_language(language)
+        return super().to_representation(instance)
+    
+
+# specialists
+
+class DiagnosticSpecialistsSerializer(TranslatableModelSerializer):
+    translations = TranslatedFieldsField()
+    class Meta:
+        model = DiagnosticSpecialists
+        fields = ('id', 'translations', 'experience', 'photo')
+
+
+class DiagnosticSpecialistsListSerializer(TranslatableModelSerializer):
+    class Meta:
+        model = DiagnosticSpecialists
+        fields = ('full_name', 'specialty', 'experience', 'photo')
+
     def to_representation(self, instance):
         language = get_language_from_request(self.context.get('request'))
         instance.set_current_language(language)

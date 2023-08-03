@@ -61,9 +61,31 @@ class SpecialDiagnosticEquipentRetrieveUpdateAPIViewAPIView(RetrieveUpdateAPIVie
     authentication_classes = authentication_classes
     queryset = SpecialDiagnosticEquipment.objects.all()
     serializer_class = SpecialDiagnosticEquipmentSerializer
-    http_method_names = ['patch', 'get']
+    http_method_names = ('patch', 'get')
 
 
 class SpecialDiagnosticEquipentListAPIView(ListAPIView):
     queryset = SpecialDiagnosticEquipment.objects.all()
     serializer_class = SpecialDiagnosticEquipmentListSerializer
+
+
+# Diagnostic Specialists
+
+class DiagnosticSpecialistsAddAPIView(CreateAPIView):
+    serializer_class = DiagnosticSpecialistsSerializer
+    permission_classes = (IsSuperUser,)
+    authentication_classes = authentication_classes
+
+
+class DiagnosticSpecialistsRetrieveUpdateAPIView(RetrieveUpdateAPIView):
+    queryset = DiagnosticSpecialists.objects.all()
+    serializer_class = DiagnosticSpecialistsSerializer
+    permission_classes = (IsSuperUser,)
+    authentication_classes = authentication_classes
+    http_method_names = ('patch', 'get')
+
+
+class DiagnosticSpecialistsListAPIView(ListAPIView):
+    queryset = DiagnosticSpecialists.objects.all()
+    serializer_class = DiagnosticSpecialistsListSerializer
+

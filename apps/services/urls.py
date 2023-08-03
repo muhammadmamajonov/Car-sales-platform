@@ -13,6 +13,9 @@ urlpatterns = [
     path('premium-diagnostics/special-diagnostic-equipent/', SpecialDiagnosticEquipentAddAPIView.as_view()),
     path('premium-diagnostics/special-diagnostic-equipent/<int:pk>/', SpecialDiagnosticEquipentRetrieveUpdateAPIViewAPIView.as_view()),
     path('premium-diagnostics/special-diagnostic-equipent/list/', SpecialDiagnosticEquipentListAPIView.as_view()),
+    path('premium-diagnostics/specialists/', DiagnosticSpecialistsAddAPIView.as_view()),
+    path('premium-diagnostics/specialists/<int:pk>/', DiagnosticSpecialistsRetrieveUpdateAPIView.as_view()),
+    path('premium-diagnostics/specialists/list/', DiagnosticSpecialistsListAPIView.as_view())
 
 
 ]
