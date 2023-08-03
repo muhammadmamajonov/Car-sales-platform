@@ -46,15 +46,15 @@ class CarsOwnedByOrientMotorsAPIView(ListAPIView):
         return super().get_queryset()
 
 
-class CarsFilterByService(ListAPIView):
+class DiagnosedCarsListAPIView(ListAPIView):
     serializer_class = CarsListFilterByServiceSerializer
-    queryset = Car.objects.all().select_related("model", "model__brand")
-    lookup_field = 'service_id'
-    
-    # def get_queryset(self):
-    #     service_id = self.kwargs.get('service_id')
-    #     self.queryset = Car.objects.filter(service_id=service_id).select_related("model", "model__brand")
-    #     return super().get_queryset()
+    queryset = Car.objects.filter(avtoritet_diagnostics=True).select_related("model", "model__brand")
+
+
+class PremiumDiagnosedCarsListAPIView(ListAPIView):
+    serializer_class = CarsListFilterByServiceSerializer
+    queryset = Car.objects.filter(avtoritet_premium_diagnostics=True).select_related("model", "model__brand")
+
     
 
 

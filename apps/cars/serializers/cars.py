@@ -82,7 +82,7 @@ class CarsListFilterByServiceSerializer(ModelSerializer):
 
     class Meta:
         model = Car
-        fields = ('id', 'model', 'price', 'year', 'engine_size', 'horsepower', 'liked')
+        fields = ('id', 'model', 'price', 'year', 'engine_size', 'mileage', 'liked')
 
     def get_liked(self, obj):
         request = self.context.get('request')
