@@ -7,6 +7,7 @@ from apps.specifications.serializers.color import ColorListSerializer
 
 
 class ColorListWithCountAPIView(ListAPIView):
+    authentication_classes = []
     queryset = Color.objects.all()
     serializer_class = ColorListSerializer
 

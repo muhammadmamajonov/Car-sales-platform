@@ -6,6 +6,7 @@ from apps.specifications.serializers.transmission import *
 
 
 class TransmissionListWithCountAPIView(ListAPIView):
+    authentication_classes = []
     queryset = Transmission.objects.all()
     serializer_class = TransmissionSerializer
 

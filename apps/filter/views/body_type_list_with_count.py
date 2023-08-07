@@ -7,9 +7,11 @@ from apps.specifications.serializers.body_type import BodyTypeListSerializer
 
 
 class BodyTypeWithCountAPIView(ListAPIView):
+    authentication_classes = []
     queryset = BodyType.objects.all()
     serializer_class = BodyTypeListSerializer
     schema = body_type_with_count_schema
+
 
     def list(self, request, *args, **kwargs):
         query = {}

@@ -4,7 +4,8 @@ from rest_framework.generics import ListAPIView
 
 
 class ServiceWithCountAPIView(ListAPIView):
-
+    authentication_classes = []
+    
     def list(self, request, *args, **kwargs):
         query = {}
         model_id = request.GET.get('model_id')

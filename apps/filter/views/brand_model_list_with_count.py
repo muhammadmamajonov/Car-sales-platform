@@ -6,6 +6,7 @@ from apps.cars.serializers.brand import FilterModelSerializer, FilterBrandSerial
 
 
 class FilterBrandAPIView(ListAPIView):
+    authentication_classes = []
     queryset = Brand.objects.all()
     serializer_class = FilterBrandSerializer
 
@@ -18,6 +19,7 @@ class FilterBrandAPIView(ListAPIView):
 
 
 class FilterModelAPIView(ListAPIView):
+    authentication_classes = []
     serializer_class = FilterModelSerializer
     queryset = Model.objects.all()
 

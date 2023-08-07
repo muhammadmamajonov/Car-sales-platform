@@ -9,5 +9,5 @@ class RegionSerializer(TranslatableModelSerializer):
 
     def to_representation(self, instance):
         language = get_language_from_request(self.context.get('request'))
-        print(instance.set_current_language(language), "region")
+        instance.set_current_language(language)
         return super().to_representation(instance)

@@ -6,6 +6,7 @@ from apps.specifications.serializers.fuel import *
 
 
 class FuelListWithCountAPIView(ListAPIView):
+    authentication_classes = []
     queryset = Fuel.objects.all()
     serializer_class = FuelListSerializer
 
