@@ -1,5 +1,6 @@
 
 from apps.main.models import Branch
+from rest_framework.serializers import SerializerMethodField
 from django.utils.translation import get_language_from_request
 from parler_rest.serializers import TranslatableModelSerializer, TranslatedFieldsField
 
@@ -13,9 +14,14 @@ class BranchSerializer(TranslatableModelSerializer):
 
     
 class BranchListSerializer(TranslatableModelSerializer):
+    photos = SerializerMethodField()
+
     class Meta:
         model = Branch
-        fields = ('id', 'name', 'address', 'contact', 'working_time', 'address', 'lat', 'long')
+        fields = ('id', 'name', 'photos', 'address', 'contact', 'working_time', 'address', 'lat', 'long')
+
+    def get_photos(self, obj):
+        return [photo.photo.url for photo in obj.photos.all()]
 
     def to_representation(self, instance):
         language = get_language_from_request(self.context.get('request'))
