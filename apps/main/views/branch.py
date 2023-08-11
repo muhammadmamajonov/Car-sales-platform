@@ -1,7 +1,8 @@
 from ..models import Branch
 from utils.permissions import IsSuperUser
-from ..serializers.branch import BranchSerializer, BranchListSerializer
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveUpdateAPIView
+from ..serializers.branch import BranchSerializer, BranchListSerializer, ComplaintToBranchSerializer
 
 
 class BranchAddAPIView(CreateAPIView):
@@ -20,6 +21,18 @@ class BranchesListAPIView(ListAPIView):
     serializer_class = BranchListSerializer
     queryset = Branch.objects.all()
     authentication_classes = []
+
+
+class ComplaintToBranchPostAPIView(CreateAPIView):
+    serializer_class = ComplaintToBranchSerializer
+    permission_classes = (IsAuthenticated,)
+
+
+
+    
+
+
+
 
 
 

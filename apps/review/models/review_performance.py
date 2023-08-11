@@ -1,12 +1,12 @@
 from django.db import models
+from .review import CarReview
 from parler.models import TranslatableModel, TranslatedFields
 
-from apps.cars.models.review import CarReview
 
 
 class Performance(TranslatableModel):
     photo = models.ImageField(upload_to='car-review/performance')
-    car_review = models.ForeignKey(CarReview, on_delete=models.CASCADE)
+    car_review = models.ForeignKey(CarReview, on_delete=models.CASCADE, related_name='performance')
     rated_by_orient_motors = models.PositiveSmallIntegerField(default=0)
     translations = TranslatedFields(
         title = models.CharField(max_length=100),

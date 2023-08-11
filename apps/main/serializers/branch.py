@@ -1,7 +1,7 @@
 
-from apps.main.models import Branch
-from rest_framework.serializers import SerializerMethodField
+from apps.main.models import Branch, ComplaintToBranch
 from django.utils.translation import get_language_from_request
+from rest_framework.serializers import SerializerMethodField, ModelSerializer
 from parler_rest.serializers import TranslatableModelSerializer, TranslatedFieldsField
 
 
@@ -27,3 +27,9 @@ class BranchListSerializer(TranslatableModelSerializer):
         language = get_language_from_request(self.context.get('request'))
         instance.set_current_language(language)
         return super().to_representation(instance)
+    
+
+class ComplaintToBranchSerializer(ModelSerializer):
+    class Meta:
+        model = ComplaintToBranch
+        fields = ('id', 'user', 'text')

@@ -1,7 +1,6 @@
 from django.db import models
+from .review import CarReview
 from parler.models import TranslatableModel, TranslatedFields
-
-from apps.cars.models.review import CarReview
 
 
 class SizeAndSpace(TranslatableModel):

@@ -1,4 +1,5 @@
 from django.db import models
+from apps.users.models import User
 from parler.models import TranslatableModel, TranslatedFields
 
 
@@ -28,3 +29,8 @@ class Branch(TranslatableModel):
 class BranchesPhoto(models.Model):
     photo = models.ImageField(upload_to="branches")
     branch = models.ForeignKey(Branch, on_delete=models.CASCADE, related_name='photos')
+
+
+class ComplaintToBranch(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="complaints_to_branches")
+    text = models.TextField()

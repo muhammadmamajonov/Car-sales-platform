@@ -6,7 +6,7 @@ from apps.cars.models.review import CarReview
 
 class SafetyAndConvenience(TranslatableModel):
     photo = models.ImageField(upload_to='car-review/safety_convenience')
-    car_review = models.ForeignKey(CarReview, on_delete=models.CASCADE)
+    car_review = models.ForeignKey(CarReview, on_delete=models.CASCADE, related_name="safety_convenience")
     rated_by_orient_motors = models.PositiveSmallIntegerField(default=0)
     translations = TranslatedFields(
         safety_equipment = models.TextField(),

@@ -4,11 +4,11 @@ from parler.models import TranslatableModel, TranslatedFields
 
 
 class Design(TranslatableModel):
-    car_review = models.ForeignKey(CarReview, on_delete=models.CASCADE)
+    car_review = models.ForeignKey(CarReview, on_delete=models.CASCADE, related_name="design")
     rated_by_orient_motors = models.PositiveSmallIntegerField(default=0)
     photo = models.ImageField(upload_to="car-review/design")
     translations = TranslatedFields(
-        title = models.CharField(200),
+        title = models.CharField(max_length=200),
         external_design = models.TextField(),
         interior_design = models.TextField(),
         

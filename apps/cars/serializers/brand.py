@@ -18,6 +18,22 @@ class CarModelSerializer(ModelSerializer):
         read_only_fields = ['used']
 
 
+# class BrandForCarDetailSerializer(ModelSerializer):
+#     class Meta:
+#         model = Brand
+#         fields = ('name',)
+
+
+class CarModelForCarDetailSerializer(ModelSerializer):
+    brand = SerializerMethodField()
+
+    class Meta:
+        model = Model
+        fields = ('name', 'brand')
+
+    def get_brand(self, obj):
+        return obj.brand.name
+
 class FilterBrandSerializer(ModelSerializer):
     count = SerializerMethodField()
 

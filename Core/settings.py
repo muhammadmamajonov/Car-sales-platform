@@ -44,7 +44,8 @@ MY_APPS = [
     'apps.main.apps.MainConfig',
     'apps.filter',
     'apps.services',
-    'apps.specifications'
+    'apps.specifications',
+    'apps.review'
 ]
 THIRD_PARTY_APPS = [
     'rest_framework_simplejwt',
