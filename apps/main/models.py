@@ -34,3 +34,9 @@ class BranchesPhoto(models.Model):
 class ComplaintToBranch(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="complaints_to_branches")
     text = models.TextField()
+
+
+class SMSProvider(models.Model):
+    token = models.TextField()
+
+    

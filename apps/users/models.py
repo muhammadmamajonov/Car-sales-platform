@@ -14,8 +14,9 @@ class SellersClassification(TranslatableModel):
 
 class User(AbstractUser):
     phone = models.CharField(max_length=17)
-    is_seller = models.BooleanField(default=False)
     sellertype = models.ForeignKey(SellersClassification, on_delete=models.SET_NULL, related_name="sellers", null=True, blank=True)
+    full_name = models.CharField(max_length=100)
+    birthdate = models.DateField()
     
     class Meta:
         db_table = "users"

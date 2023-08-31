@@ -82,7 +82,7 @@ class CarsOwnedByOrientMotorsSerializer(ModelSerializer):
 
     class Meta:
         model = Car
-        fields = ['id', 'model', 'body_type', 'rate']
+        fields = ['id', 'model', 'body_type', 'rated']
     
     def get_model(self, obj):
         model = {
