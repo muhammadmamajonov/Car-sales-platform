@@ -2,7 +2,7 @@ from ..models import Region
 from django.utils.translation import get_language_from_request
 from parler_rest.serializers import TranslatableModelSerializer
 
-class RegionSerializer(TranslatableModelSerializer):
+class RegionListSerializer(TranslatableModelSerializer):
     class Meta:
         model = Region
         fields = ['id', 'name']

@@ -17,7 +17,7 @@ class Car(models.Model):
     used_car = models.BooleanField(default=False)
     active = models.BooleanField(default=True)
     liked_by = models.ManyToManyField(User, related_name="likes", null=True, blank=True)
-    rate = models.PositiveSmallIntegerField(default=0)
+    rated = models.PositiveSmallIntegerField(default=0)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     model = models.ForeignKey(Model, on_delete=models.SET_NULL, null=True)
     body_type = models.ForeignKey(BodyType, on_delete=models.SET_NULL, null=True)
@@ -32,3 +32,8 @@ class Car(models.Model):
     
     class Meta:
         db_table = "car"
+
+    
+class CarPhotos(models.Model):
+    photo = models.ImageField(upload_to="cars")
+    car = models.ForeignKey(Car, on_delete=models.CASCADE, related_name='photos')

@@ -32,6 +32,7 @@ urlpatterns = [
     path('fiter/', include('apps.filter.urls')),
     path('services/', include('apps.services.urls')),
     path('specifications/', include('apps.specifications.urls')),
+    path('review/', include('apps.review.urls')),
     path('main/', include('apps.main.urls')),
     path('token/access/admin/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),

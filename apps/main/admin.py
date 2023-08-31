@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import Region, Branch, BranchesPhoto
 from parler.admin import TranslatableAdmin
+from .models import Region, Branch, BranchesPhoto, SMSProvider
 
 
 @admin.register(Region)
@@ -23,3 +23,5 @@ class BranchAdmin(TranslatableAdmin):
 class BranchPhotoAdmin(admin.ModelAdmin):
     list_display = ('id', 'photo')
     list_display_links = ('id', 'photo')
+
+admin.site.register(SMSProvider)

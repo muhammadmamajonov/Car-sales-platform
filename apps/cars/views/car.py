@@ -1,10 +1,11 @@
 from ..models.car import Car
 from ..serializers.cars import *
 from utils.permissions import IsOwner
+from rest_framework.views import APIView
 from ..pagination import CarsListPagination
+from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView, UpdateAPIView
-
 
 
 class CarPostAPIView(CreateAPIView):
@@ -22,7 +23,7 @@ class CarEditAPIView(UpdateAPIView):
 class CarGetAPIView(RetrieveAPIView):
     authentication_classes = []
     queryset = Car.objects.all()
-    serializer_class = CarGetDetailSerializer
+    serializer_class = CarDetailSerializer
     
 
 class CarListAPIView(ListAPIView):
@@ -44,12 +45,29 @@ class CarsOwnedByOrientMotorsAPIView(ListAPIView):
 
 class DiagnosedCarsListAPIView(ListAPIView):
     authentication_classes = []
-    serializer_class = CarsListFilterByServiceSerializer
+    serializer_class = CarListSerializer
     queryset = Car.objects.filter(avtoritet_diagnostics=True).select_related("model", "model__brand")
 
 
 class PremiumDiagnosedCarsListAPIView(ListAPIView):
     authentication_classes = []
-    serializer_class = CarsListFilterByServiceSerializer
+    serializer_class = CarListSerializer
     queryset = Car.objects.filter(avtoritet_premium_diagnostics=True).select_related("model", "model__brand")
 
+
+class LikeAPIView(APIView):
+    permission_classes = (IsAuthenticated,)
+
+    def post(self, request, car_id):
+        car = Car.objects.filter(id=car_id).first()
+        user = request.user
+        if car:
+            if user in car.liked_by.all():
+                car.liked_by.remove(user)
+            else:
+                car.liked_by.add(user)
+            
+            return Response({"detail":"success"})
+        else:
+            return Response({"detail":"not found"}, 404)
+        
