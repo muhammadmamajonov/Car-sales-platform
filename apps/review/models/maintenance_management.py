@@ -10,7 +10,7 @@ class MaintenanceAndManagement(TranslatableModel):
     translations = TranslatedFields(
         title = models.CharField(max_length=200),
         fuel_efficiency = models.TextField(),
-        Service = models.TextField(),
+        service = models.TextField(),
         warranty = models.TextField()
         
     )
@@ -22,7 +22,7 @@ class MaintenanceAndManagement(TranslatableModel):
 
 class MaintenanceManagementAdvantages(TranslatableModel):
     translations = TranslatedFields(
-        title = models.CharField(max_length=100)
+        text = models.CharField(max_length=100)
     )
     maintenance_management = models.ForeignKey(MaintenanceAndManagement, on_delete=models.CASCADE, related_name="advantages")
 
