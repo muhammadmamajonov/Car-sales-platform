@@ -3,8 +3,9 @@ from django.db import models
 from apps.users.models import User
 from apps.users.models import User
 from apps.main.models import Region
-from apps.specifications.models import BodyType, Color, Fuel, Transmission
-
+from apps.specifications.models import BodyType, Color, Fuel, Transmission, DriveUnit, PaintCondition
+    
+    
 
 class Car(models.Model):
     year = models.PositiveSmallIntegerField(help_text="Ishlab chiqarilgan yil")
@@ -29,7 +30,11 @@ class Car(models.Model):
     fuel = models.ForeignKey(Fuel, on_delete=models.SET_NULL, null=True)
     transmission = models.ForeignKey(Transmission, on_delete=models.SET_NULL, null=True)
     color = models.ForeignKey(Color, on_delete=models.SET_NULL, null=True)
-    
+    paint_condition = models.ManyToManyField(PaintCondition, related_name='cars')
+    description = models.TextField()
+    drive_unit = models.ForeignKey(DriveUnit, on_delete=models.SET_NULL, null=True, related_name='cars')
+    number_of_owners = models.PositiveSmallIntegerField(default=1)
+
     class Meta:
         db_table = "car"
 
@@ -37,3 +42,5 @@ class Car(models.Model):
 class CarPhotos(models.Model):
     photo = models.ImageField(upload_to="cars")
     car = models.ForeignKey(Car, on_delete=models.CASCADE, related_name='photos')
+
+

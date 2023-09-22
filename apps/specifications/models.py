@@ -39,6 +39,17 @@ class Color(TranslatableModel):
         return self.name
     
 
+class PaintCondition(TranslatableModel):
+    translations = TranslatedFields(
+        title = models.CharField(max_length=100)
+    )
+
+    class Meta:
+        db_table = "paint_condition"
+
+    def __str__(self) -> str:
+        return self.title
+    
 
 class BodyType(TranslatableModel):
     translations = TranslatedFields(
@@ -50,3 +61,15 @@ class BodyType(TranslatableModel):
 
     def __str__(self) -> str:
         return self.name
+    
+
+class DriveUnit(TranslatableModel):
+    translations = TranslatedFields(
+        title = models.CharField(max_length=100)
+    )
+
+    class Meta:
+        db_table = "drive_unit"
+        
+    def __str__(self) -> str:
+        return self.title

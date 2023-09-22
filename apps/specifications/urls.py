@@ -1,4 +1,6 @@
 from django.urls import path
+from .views.drive_unit import DriveUnitListAPIView
+from .views.paint_condition import PaintConditionListAPIView
 from .views.fuel import FuelAddAPIView, FuelListAPIView, FuelRetrieveUpdateAPIView
 from .views.color import ColorAddAPIView, ColorListAPIView, ColorRetrieveUpdateAPIView
 from .views.body_type import BodyTypeAddAPIView, BodyTypeListAPIView, BodyTypeRetieveUpdateAPIView
@@ -21,4 +23,7 @@ urlpatterns = [
     path('transmission/add/', TransmissionAddAPIView.as_view()),
     path('transmission/<int:pk>/', TransmissionRetrieveUpdateAPIView.as_view()),
     path('transmission/list/', TransmissionsListAPIView.as_view()),
+
+    path('drive-unit/list/',  DriveUnitListAPIView.as_view()),
+    path('paint-condition/list/', PaintConditionListAPIView.as_view())
 ]
