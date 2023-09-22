@@ -10,7 +10,7 @@ from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView,
 
 class CarPostAPIView(CreateAPIView):
     serializer_class = CarSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = (IsAuthenticated,)
 
 
 class CarEditAPIView(UpdateAPIView):

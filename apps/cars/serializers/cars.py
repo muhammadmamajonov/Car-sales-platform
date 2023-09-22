@@ -13,6 +13,11 @@ class CarSerializer(ModelSerializer):
     class Meta:
         model = Car
         fields = '__all__'
+        extra_kwargs = {
+            "mileage": {"help_text":"Пробег"},
+            "body_type":{"help_text":"Тип кузова"},
+            "drive_unit":{"help_textt":"Привод"},
+        }
         read_only_fields = ['liked_by']
 
 
@@ -25,6 +30,7 @@ class CarListSerializer(ModelSerializer):
     class Meta:
         model = Car
         fields = ('id', 'model', 'price', 'year', 'engine_size', 'mileage', 'liked', 'avtoritet_diagnostics', 'avtoritet_premium_diagnostics', 'orient_motors_warranty', "owned_by_orient_motors", 'photo')
+        
 
     def get_photo(self, obj):
         car_photo = obj.photos.first()
