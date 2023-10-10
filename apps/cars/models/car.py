@@ -3,8 +3,8 @@ from django.db import models
 from apps.users.models import User
 from apps.users.models import User
 from apps.main.models import Region
-from apps.specifications.models import BodyType, Color, Fuel, Transmission, DriveUnit, PaintCondition
-    
+from apps.specifications.models import (BodyType, Color, Fuel, Transmission, DriveUnit, Optics,
+                                        PaintCondition, MediaTools, Salon, VehicleOptions, ExternalBodyKit)
     
 
 class Car(models.Model):
@@ -34,6 +34,12 @@ class Car(models.Model):
     description = models.TextField()
     drive_unit = models.ForeignKey(DriveUnit, on_delete=models.SET_NULL, null=True, related_name='cars')
     number_of_owners = models.PositiveSmallIntegerField(default=1)
+    media_tools = models.ManyToManyField(MediaTools, related_name='cars')
+    optics = models.ManyToManyField(Optics, related_name='cars')
+    external_body_kit = models.ManyToManyField(ExternalBodyKit, related_name='cars')
+    salon = models.ManyToManyField(Salon, related_name='cars')
+    vehicle_options = models.ManyToManyField(VehicleOptions, related_name='cars')
+    
 
     class Meta:
         db_table = "car"

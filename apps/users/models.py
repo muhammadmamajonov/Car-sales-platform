@@ -16,7 +16,7 @@ class User(AbstractUser):
     phone = models.CharField(max_length=17)
     sellertype = models.ForeignKey(SellersClassification, on_delete=models.SET_NULL, related_name="sellers", null=True, blank=True)
     full_name = models.CharField(max_length=100)
-    birthdate = models.DateField()
+    birthdate = models.DateField(null=True)
     
     class Meta:
         db_table = "users"

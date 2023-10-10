@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import BodyType, Color, Fuel, Transmission, PaintCondition, DriveUnit
+from .models import (BodyType, Color, Fuel, Transmission, PaintCondition, Optics, 
+                     DriveUnit, MediaTools, VehicleOptions, ExternalBodyKit, Salon)
 from parler.admin import TranslatableAdmin
 
 
@@ -61,3 +62,58 @@ class DriveUnitAdmin(TranslatableAdmin):
         }),
     )
 admin.site.register(DriveUnit, DriveUnitAdmin)
+
+
+class MediaToolsAdmin(TranslatableAdmin):
+    list_display = ('id', 'title')
+    fieldsets = (
+        (None, {
+            "fields":('title',)
+        }),
+    )
+    
+admin.site.register(MediaTools, MediaToolsAdmin)
+
+
+class OpticsAdmin(TranslatableAdmin):
+    list_display = ('id', 'title')
+    fieldsets = (
+        (None, {
+            "fields":('title',)
+        }),
+    )
+    
+admin.site.register(Optics, OpticsAdmin)
+
+
+class VehicleOptionsAdmin(TranslatableAdmin):
+    list_display = ('id', 'title')
+    fieldsets = (
+        (None, {
+            "fields":('title',)
+        }),
+    )
+    
+admin.site.register(VehicleOptions, VehicleOptionsAdmin)
+
+
+class ExternalBodyKitAdmin(TranslatableAdmin):
+    list_display = ('id', 'title')
+    fieldsets = (
+        (None, {
+            "fields":('title',)
+        }),
+    )
+    
+admin.site.register(ExternalBodyKit, ExternalBodyKitAdmin)
+
+
+class SalonAdmin(TranslatableAdmin):
+    list_display = ('id', 'title')
+    fieldsets = (
+        (None, {
+            "fields":('title',)
+        }),
+    )
+    
+admin.site.register(Salon, SalonAdmin)

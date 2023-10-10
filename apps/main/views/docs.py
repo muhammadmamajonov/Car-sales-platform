@@ -14,6 +14,6 @@ def docs_login_view(request):
             login(request, user)
             return redirect('/docs/')
         else:
-            return redirect('/docs/login')
+            return redirect('/docs/login/')
 
     return render(request, 'admin/login.html', context={'form': AdminAuthenticationForm})

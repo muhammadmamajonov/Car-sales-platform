@@ -5,6 +5,11 @@ from .views.fuel import FuelAddAPIView, FuelListAPIView, FuelRetrieveUpdateAPIVi
 from .views.color import ColorAddAPIView, ColorListAPIView, ColorRetrieveUpdateAPIView
 from .views.body_type import BodyTypeAddAPIView, BodyTypeListAPIView, BodyTypeRetieveUpdateAPIView
 from .views.transmission import TransmissionAddAPIView, TransmissionRetrieveUpdateAPIView, TransmissionsListAPIView
+from .views.media_tools import MediaToolsListAPIView
+from .views.salon import SalonListAPIView
+from .views.external_body_kit import ExternalBodyKitListAPIView
+from .views.optics import OpticsListAPIView
+from .views.vehicle_options import VehicleOptionsListAPIView
 
 
 urlpatterns = [
@@ -25,5 +30,12 @@ urlpatterns = [
     path('transmission/list/', TransmissionsListAPIView.as_view()),
 
     path('drive-unit/list/',  DriveUnitListAPIView.as_view()),
-    path('paint-condition/list/', PaintConditionListAPIView.as_view())
+    path('paint-condition/list/', PaintConditionListAPIView.as_view()),
+    
+    path('media-tools/list/', MediaToolsListAPIView.as_view()),
+    path('salon/list/', SalonListAPIView.as_view()),
+    path('external-body-kit/list/', ExternalBodyKitListAPIView.as_view()),
+    path('optics/list/', OpticsListAPIView.as_view()),
+    path('vehicle-options/list/', VehicleOptionsListAPIView.as_view()),
+    
 ]
