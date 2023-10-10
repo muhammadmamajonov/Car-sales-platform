@@ -7,6 +7,7 @@ from apps.specifications.serializers.color import ColorListSerializer
 from apps.specifications.serializers.body_type import BodyTypeListSerializer
 from rest_framework.serializers import ModelSerializer, SerializerMethodField
 from ...specifications.serializers.transmission import TransmissionListSerializer
+from ...specifications.serializers.media_tools import MediaToolsListSerializer
 
 
 class CarSerializer(ModelSerializer):
@@ -16,7 +17,8 @@ class CarSerializer(ModelSerializer):
         extra_kwargs = {
             "mileage": {"help_text":"Пробег"},
             "body_type":{"help_text":"Тип кузова"},
-            "drive_unit":{"help_textt":"Привод"},
+            "drive_unit":{"help_text":"Привод"},
+            "media_tools":{"help_text":"/specifications/media-tools/list/, Many select"},
         }
         read_only_fields = ['liked_by']
 

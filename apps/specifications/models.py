@@ -73,3 +73,63 @@ class DriveUnit(TranslatableModel):
         
     def __str__(self) -> str:
         return self.title
+
+
+class ExternalBodyKit(TranslatableModel):
+    translations = TranslatedFields(
+        title = models.CharField(max_length=100)
+    )
+    
+    class Meta:
+        db_table = "external_body_kit"
+        
+    def __str__(self):
+        return self.title
+    
+
+class Optics(TranslatableModel):
+    translations = TranslatedFields(
+        title = models.CharField(max_length=50)
+    )
+    
+    class Meta:
+        db_table = "optics"
+
+    def __str__(self):
+        return self.title
+
+
+class Salon(TranslatableModel):
+    translations = TranslatedFields(
+        title = models.CharField(max_length=50)
+    )
+    
+    class Meta:
+        db_table = "salon"
+    
+    def __str__(self):
+        return self.title
+    
+
+class VehicleOptions(TranslatableModel):
+    translations = TranslatedFields(
+        title = models.CharField(max_length=50)
+    )
+    
+    class Meta:
+        db_table = "vehicle_options"
+        
+    def __str__(self):
+        return self.title
+    
+
+class MediaTools(TranslatableModel):
+    translations = TranslatedFields(
+        title = models.CharField(max_length=50)
+    )
+    
+    class Meta:
+        db_table = "media_tools"
+    
+    def __str__(self):
+        return self.title
